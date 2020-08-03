@@ -2,29 +2,17 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const uniqueValidator = require('mongoose-unique-validator')
 
-const url = process.env.MONGODB_URI
-
-console.log('connecting to', url)
-  
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-  .then(result => {
-    console.log('connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-  })
- 
-
-
 const blogSchema = mongoose.Schema({
     title: {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
     author: String,
     url: {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
     likes: Number
 })
