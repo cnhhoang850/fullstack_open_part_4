@@ -30,7 +30,13 @@ usersRouter.get('/', async (request, response) => {
         .find({}).populate('blogs', {title: 1, likes: 1, author: 1})
 
     response.json(users)
-  })
+})
 
+usersRouter.get('/:id', async(request, response) => {
+    const user = await User.findById(request.params.id)
+    .populate('blogs', {title: 1, likes: 1})
+
+    response.json(user)
+})
 
 module.exports = usersRouter
