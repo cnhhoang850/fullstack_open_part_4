@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-require('dotenv').config()
 const uniqueValidator = require('mongoose-unique-validator')
 
 const blogSchema = mongoose.Schema({
@@ -14,7 +13,13 @@ const blogSchema = mongoose.Schema({
     unique: true,
     required: true
   },
-  likes: Number
+  likes: Number,
+  user: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
 })
 
 blogSchema.set('toJSON', {
